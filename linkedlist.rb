@@ -8,7 +8,6 @@ class Node
   end
 end
 
-# Linkedlist
 class LinkedList
   # setup head and tail
   def initialize
@@ -97,3 +96,13 @@ class LinkedList
     end
   end
 end
+
+puts list = LinkedList.new
+
+puts list.add_at(0, 13)
+
+puts list.get(0)
+# => 11
+
+puts list.get(3)
+# => 5
