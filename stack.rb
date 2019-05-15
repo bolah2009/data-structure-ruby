@@ -7,6 +7,10 @@ class Stack
     @min_list = LinkedList.new
   end
 
+  def empty?
+    @list.empty?
+  end
+
   def push(number)
     @list.add_at(0, number)
     push_min(number)
