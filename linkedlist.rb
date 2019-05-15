@@ -22,6 +22,12 @@ class LinkedList
     return node unless node.next_node while (node = node.next_node)
   end
 
+  def empty?
+    return true if @head.nil?
+
+    false
+  end
+
   def add(number)
     # your code here
     if @head
@@ -96,13 +102,3 @@ class LinkedList
     end
   end
 end
-
-puts list = LinkedList.new
-
-puts list.add_at(0, 13)
-
-puts list.get(0)
-# => 11
-
-puts list.get(3)
-# => 5
