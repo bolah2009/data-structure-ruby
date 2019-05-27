@@ -1,19 +1,11 @@
 def move(starting, goal)
-    step = []
-    start = starting
-    stop = starting == 1 ? 2 : 1
-    i = 0
-    while i < 3
-      step << start
-      step << stop
-      start += 1 if stop == goal
-      start = 1 if start == goal && start == stop
-      stop = goal if (stop + 1) == start
-      stop += 1 if stop != goal
-      i += 1
-    end
+    aux = case starting + goal
+          when 3; 3
+          when 4; 2
+          else 1
+          end
   
-    "#{step[0]}->#{step[1]} #{step[2]}->#{step[3]} #{step[4]}->#{step[5]}"
+    "#{starting}->#{aux} #{starting}->#{goal} #{aux}->#{goal}"
   end
   
   puts move(1, 3)
@@ -21,4 +13,10 @@ def move(starting, goal)
   
   puts move(2, 3)
   # => 2->1 2->3 1->3
+  
+  puts move(2, 1)
+  # => "2->3 2->1 3->1"
+  
+  puts move(1, 2)
+  # => "1->3 1->2 3->2"
   
