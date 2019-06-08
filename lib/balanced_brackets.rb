@@ -3,7 +3,6 @@
 require_relative 'stack'
 
 def balanced_brackets?(string)
-  # your code here
   stack = Stack.new
   brackets = string.split('').select { |i| /\W/.match(i) }
   brackets.each do |i|
