@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require_relative 'stack'
 
 def balanced_brackets?(string)
   # your code here
   stack = Stack.new
-  brackets = string.split('').select { |i| p /\W/.match(i) }
+  brackets = string.split('').select { |i| /\W/.match(i) }
   brackets.each do |i|
     if (i == '(') || (i == '[') || (i == '{')
       stack.push(i)
