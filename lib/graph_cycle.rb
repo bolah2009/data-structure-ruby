@@ -11,9 +11,7 @@ def graph_cycle?(graph)
     return false if graph[head].nil?
 
     visited << head
-    not_visited = graph[head].reject { |node| visited.include? node }
-
-    stack += not_visited.reverse
+    stack += graph[head].reject { |node| visited.include? node }.reverse
   end
 
   false
