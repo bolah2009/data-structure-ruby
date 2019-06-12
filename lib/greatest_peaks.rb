@@ -1,7 +1,17 @@
 # frozen_string_literal: true
 
 def greatest_peaks(map)
-  find_peaks(map, 0, 0)
+  visited = map.map(&:dup)
+
+  find_peaks(map, visited, 0)
+  areas = visited.flatten.uniq
+  counts = []
+  i = 0
+  while i < areas.size
+    counts << visited.flatten.count { |x| x == areas[i] }
+    i += 1
+  end
+  counts.minmax
 end
 
 def search(map, col, row)
@@ -14,27 +24,26 @@ def search(map, col, row)
     search(map, row, col + 1)
 end
 
-def find_peaks(map, row, col)
-  marks = %w[A B C D E]
+def find_peaks(map, visited, i)
+  return if visited.flatten.none? { |i| (i.is_a? Integer) }
 
-  visited = map.map(&:dup) if visited.nil?
-  p visited
-  peak = search(visited, row, col)
-  p peak
-  mark_area(map, peak[0], peak[1], peak[2], visited, marks[0])
+  marks = ('A'..'Z').to_a
 
+  peak = search(visited, 0, 0)
+  mark_area(map, peak[0], peak[1], peak[2], visited, marks[i])
+  find_peaks(map, visited, i + 1)
   visited
 end
 
 def mark_area(map, row, col, peak, visited, mark)
   return nil if [col.negative?, row.negative?, (row >= map.size), (col >= map.size)].any? || [(visited[row][col].is_a? String)].any?
+  return if peak < map[row][col]
 
   # p [(col - 1), (col + 1), (row - 1), (row + 1)]
   sides = [(!(row - 1).negative? && (peak < map[row - 1][col])),
            (!(col - 1).negative? && (peak < map[row][col - 1])),
            ((row + 1) < map.size && (peak < map[row + 1][col])),
            ((col + 1) < map.size && (peak < map[row][col + 1]))]
-  return if peak < map[row][col]
 
   return if sides.any?
 
