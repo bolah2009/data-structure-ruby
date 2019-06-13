@@ -1,16 +1,8 @@
 # frozen_string_literal: true
 
-def hash_table(arr, hash = {}, array = [])
-  hash_funtion(arr, hash)
-  (0..10).each { |i| array += hash[i] unless hash[i].nil? }
-  array
-end
-
-def hash_funtion(arr, hash)
-  arr.each do |i|
-    hash[i.abs % 11]&.push(i)
-    hash[i.abs % 11] = [i] if hash[i.abs % 11].nil?
-  end
+def hash_table(arr, hash = [])
+  arr.each { |i| hash[i.abs % 11] = hash[i.abs % 11] ? hash[i.abs % 11].push(i) : [i] }
+  hash.compact.flatten
 end
 
 p hash_table([12, 24, 125, 5, 91, 1106, 2, 1021, 29, 3536, 10])
