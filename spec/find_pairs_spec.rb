@@ -8,7 +8,7 @@ RSpec.describe '#find_pairs' do
   end
 
   it 'checks an array of four positions' do
-    expect(find_pairs([1, 3, 5, 11], 14)).to eql(3)
+    expect(find_pairs([1, 3, 5, 11], 14)).to eql([[3, 11]])
   end
 
   it 'checks an array of seven positions' do
