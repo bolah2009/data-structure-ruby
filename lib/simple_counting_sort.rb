@@ -2,7 +2,7 @@
 
 def simple_counting_sort(array, sorted_array = [])
   count = s_counting_sort(array)
-  count.each_with_index { |times, element| sorted_array.concat([element] * times) }
+  count.each_with_index { |times, e| sorted_array.concat([e] * times) }
   sorted_array
 end
 
