@@ -8,7 +8,7 @@ def rt_sort_itself(arr, time, x_sort = arr[1], index = 1)
   time = running_time_sort(arr, time, x_sort, index)
   return time if index + 1 >= arr.size
 
-  rt_sort_itself(arr, time, arr[index + 1], index + 1) unless index + 1 >= arr.size
+  rt_sort_itself(arr, time, arr[index + 1], index + 1)
 end
 
 def running_time_sort(arr, time, x_sort, index)
