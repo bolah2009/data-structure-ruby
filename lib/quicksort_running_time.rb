@@ -3,22 +3,23 @@
 require './lib/running_time'
 
 def quicksort_running_time(array)
-  rt_sort_itself(array.dup, 0) - rt_advanced_quicksort(array.dup, 0)
+  rt_sort_itself(array.dup, 0) - rt_adv_quicksort(array.dup, 0)
 end
 
-def rt_advanced_quicksort(arr, time, left = 0, right = 0, pivot = arr.size - 1)
+def rt_adv_quicksort(arr, time, left = 0, right = 0, pivot = arr.size - 1)
   return time if left >= pivot
 
-  next_left = left
+  nxt_left = left
+
   left_and_time = rt_array_partition(arr, time, left, right, pivot)
   left = left_and_time.first
   time = left_and_time.last
 
   time = rt_pivot_swap(arr, left, pivot, time)
-  unless left.zero?
-    time = rt_advanced_quicksort(arr, time, next_left, next_left, left - 1)
-  end
-  time = rt_advanced_quicksort(arr, time, left + 1, left + 1, pivot)
+
+  time = rt_adv_quicksort(arr, time, nxt_left, nxt_left, left - 1) if left >= 1
+
+  time = rt_adv_quicksort(arr, time, left + 1, left + 1, pivot)
   time
 end
 
